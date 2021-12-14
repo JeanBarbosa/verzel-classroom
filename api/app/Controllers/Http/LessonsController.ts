@@ -1,4 +1,5 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
+import Course from 'App/Models/Course'
 import Lesson from 'App/Models/Lesson'
 
 export default class LessonsController {
@@ -7,6 +8,7 @@ export default class LessonsController {
       const { page } = request.qs()
 
       const lessons = await Lesson.query()
+        .preload('courses')
         .orderBy('id', 'desc')
         .paginate(page)
 
@@ -23,12 +25,30 @@ export default class LessonsController {
   public async store({ request, response, auth }: HttpContextContract) {
     try {
 
-      const data = request.only([
+      const { course_id: courseId, ...data } = request.only([
+        'course_id',
         'name',
         'url',
         'start_date',
         'description'
       ])
+
+      if (courseId) {
+        const course = await Course.query()
+          .where('id', courseId)
+          .where('user_id', auth.use('api').user!.id)
+          .first()
+
+        if (!course) {
+          return response.status(401).send({
+            error: {
+              message: 'Módulo inválido'
+            }
+          })
+        }
+
+        course.related('lessons').attach([courseId])
+      }
 
       const lesson = await Lesson.create({
         userId: auth.use('api').user!.id,

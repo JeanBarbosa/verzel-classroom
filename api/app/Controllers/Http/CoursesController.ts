@@ -7,6 +7,7 @@ export default class CoursesController {
       const { page } = request.qs()
 
       const courses = await Course.query()
+        .preload('lessons')
         .orderBy('id', 'desc')
         .paginate(page)
 
