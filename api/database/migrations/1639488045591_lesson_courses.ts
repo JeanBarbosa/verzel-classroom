@@ -1,20 +1,15 @@
 import BaseSchema from '@ioc:Adonis/Lucid/Schema'
 
-export default class Modules extends BaseSchema {
-  protected tableName = 'modules'
+export default class LessonCourses extends BaseSchema {
+  protected tableName = 'lesson_courses'
 
-  public async up () {
+  public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
-      table.integer('user_id')
-      .unsigned()
-      .references('id')
-      .inTable('users')
-      .onUpdate('CASCADE')
-      .onDelete('CASCADE')
-      table.string('name', 255)
-      table.string('short_description', 400)
 
+      table.integer('course_id').unsigned().references('courses.id')
+      table.integer('lesson_id').unsigned().references('lessons.id')
+      table.unique(['course_id', 'lesson_id'])
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
@@ -23,7 +18,7 @@ export default class Modules extends BaseSchema {
     })
   }
 
-  public async down () {
+  public async down() {
     this.schema.dropTable(this.tableName)
   }
 }
