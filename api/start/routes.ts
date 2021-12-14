@@ -33,7 +33,15 @@ Route.post('forgotpasswords', 'ForgotPasswordsController.store')
 Route.put('forgotpasswords', 'ForgotPasswordsController.update')
 
 //Modules
-Route.get('modules', 'ModulesController.index')
-Route.post('modules', 'ModulesController.store').middleware('auth')
-Route.put('modules/:id', 'ModulesController.update').middleware('auth')
-Route.delete('modules/:id', 'ModulesController.destroy').middleware('auth')
+Route.get('courses', 'CoursesController.index')
+Route.post('courses', 'CoursesController.store').middleware('auth')
+Route.put('courses/:id', 'CoursesController.update').middleware('auth')
+Route.get('courses/:id', 'CoursesController.show')
+Route.delete('courses/:id', 'CoursesController.destroy').middleware('auth')
+
+//lessons
+Route.get('lessons', 'LessonsController.index')
+Route.post('lessons', 'LessonsController.store').middleware('auth')
+Route.put('lessons/:id', 'LessonsController.update').middleware('auth')
+Route.get('lessons/:id', 'LessonsController.show')
+Route.delete('lessons/:id', 'LessonsController.destroy').middleware('auth')
