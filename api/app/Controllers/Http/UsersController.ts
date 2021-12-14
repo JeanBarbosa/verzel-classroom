@@ -8,10 +8,7 @@ export default class UsersController {
       const data = request.only([
         'username',
         'email',
-        'document',
-        'phone',
         'password',
-        'pix',
       ])
 
       const user = await User.create(data)
@@ -38,10 +35,7 @@ export default class UsersController {
       const data = request.only([
         'username',
         'email',
-        'document',
-        'phone',
         'password',
-        'pix',
       ])
 
       const user = await User.findOrFail(auth.use('api').user!.id)

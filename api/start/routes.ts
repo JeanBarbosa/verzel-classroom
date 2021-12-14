@@ -32,3 +32,8 @@ Route.post('login', 'SessionsController.store')
 Route.post('forgotpasswords', 'ForgotPasswordsController.store')
 Route.put('forgotpasswords', 'ForgotPasswordsController.update')
 
+//Modules
+Route.get('modules', 'ModulesController.index')
+Route.post('modules', 'ModulesController.store').middleware('auth')
+Route.put('modules/:id', 'ModulesController.update').middleware('auth')
+Route.delete('modules/:id', 'ModulesController.destroy').middleware('auth')

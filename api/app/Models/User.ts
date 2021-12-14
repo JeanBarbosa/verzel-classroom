@@ -1,7 +1,5 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import Indication from 'App/Models/Indication';
-import Invite from 'App/Models/Invite';
 
 import {
   column,
@@ -28,15 +26,6 @@ export default class User extends BaseModel {
   public password: string
 
   @column()
-  public document: string
-
-  @column()
-  public phone: string
-
-  @column()
-  public pix: string
-
-  @column()
   public rememberMeToken?: string
 
   @column()
@@ -46,7 +35,7 @@ export default class User extends BaseModel {
   public termsAccepted: boolean
 
   @column()
-  public role: string
+  public roles: string
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
@@ -61,9 +50,4 @@ export default class User extends BaseModel {
     }
   }
 
-  @hasMany(() => Indication)
-  public indications: HasMany<typeof Indication>
-
-  @hasMany(() => Invite)
-  public invite: HasMany<typeof Invite>
 }
