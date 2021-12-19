@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.button`
-  background: #00eea2;
+  background: var(--color-secondary);
   height: 40px;
   border-radius: 25px;
   border: 0;
   padding: 0 10px;
-  color: #111111;
+  color: var(--color-tertiary);
   width: 100%;
   font-weight: 500;
   margin-top: 20px;

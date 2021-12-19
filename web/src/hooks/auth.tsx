@@ -6,10 +6,8 @@ interface User {
   id: number;
   username: string;
   email: string;
-  document: string;
-  avatar: string;
-  pix?: string;
-  phone?: string;
+  tags: string;
+  avatar?: string;
 }
 
 interface AuthState {

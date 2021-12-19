@@ -25,7 +25,7 @@ interface SignUpFormData {
   username: string;
   email: string;
   password: string;
-  phone: string;
+  job: string;
 }
 
 const UserForm: React.FC = (props: any) => {
@@ -50,7 +50,7 @@ const UserForm: React.FC = (props: any) => {
             .email('Digite um e-mail válido')
             .required('E-mail obrigatório'),
           password: Yup.string().min(6, 'No mínimo 6 dígitos'),
-          phone: Yup.string(),
+          job: Yup.string(),
         });
 
         await schema.validate(data, {
@@ -83,7 +83,7 @@ const UserForm: React.FC = (props: any) => {
       if (userData === undefined)
         await setUserData({
           username: props.getState('username', ''),
-          phone: props.getState('phone', ''),
+          job: props.getState('job', ''),
           email: props.getState('email', ''),
           password: props.getState('password', ''),
         })
@@ -134,12 +134,12 @@ const UserForm: React.FC = (props: any) => {
             />
 
             <Input
-              name="phone"
+              name="job"
               icon={FiPhone}
               type="text"
-              placeholder="Digite seu Telefone?"
+              placeholder="Profissão"
               onChange={(e) => {
-                props.setState('phone', e.target.value)
+                props.setState('job', e.target.value)
               }}
             />
 

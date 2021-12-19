@@ -1,12 +1,10 @@
 import React, { useCallback, useRef } from 'react';
-import { FiChevronLeft, FiCreditCard, FiKey } from 'react-icons/fi';
+import { FiChevronLeft, FiCreditCard } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 import { useHistory } from 'react-router-dom';
 import api from '../../../services/api';
-import ReactPlayer from 'react-player/lazy'
-import { isValidCPF } from '../../../utils/cpf';
 
 import { useToast } from '../../../hooks/toast';
 
@@ -25,19 +23,16 @@ import {
   RadioGroup,
   Radio,
   LabelRadio,
-  PlayerWrapper
 } from './styles';
 import { useState } from 'react';
 
 interface SignUpFormData {
-  document: string;
-  pix: string;
+  tags: string;
   aceite?: boolean;
 }
 
 const BankForm: React.FC = (props: any) => {
 
-  const [openYoutube, setOpenYoutube] = useState(false)
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const history = useHistory();
@@ -52,8 +47,7 @@ const BankForm: React.FC = (props: any) => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
-          document: Yup.string().required('CPF obrigatório').test('CPF', 'Cpf inválido', (value) => isValidCPF(value)),
-          pix: Yup.string().required('PIX obrigatório'),
+          tags: Yup.string(),
           aceite: Yup.string(),
         });
 
@@ -93,26 +87,15 @@ const BankForm: React.FC = (props: any) => {
           </button>
           <h1>
             agora! <br />
-            digite sua chave Pix...
+            escolhas as categorias de interesse...
           </h1>
 
           <Benefit>
             {/* eslint-disable jsx-a11y/anchor-is-valid */}
-            <a onClick={() => setOpenYoutube(!openYoutube)}>
+            <a onClick={() => { }}>
               Saiba o que é pix e como <br />
               cadastrar sua chave, <b>Clique aqui!</b>
             </a>
-
-            {
-              !!openYoutube &&
-              <PlayerWrapper>
-                <ReactPlayer
-                  className='react-player'
-                  url='https://www.youtube.com/watch?v=ar-ynWFzEGs'
-                />
-              </PlayerWrapper>
-            }
-
           </Benefit>
         </Section>
         <AnimationContainer>
@@ -123,22 +106,12 @@ const BankForm: React.FC = (props: any) => {
             </h1>
 
             <Input
-              name="document"
+              name="tags"
               icon={FiCreditCard}
-              placeholder="CPF"
+              placeholder="Tags"
               required
               onChange={(e) => {
-                props.setState('document', e.target.value)
-              }}
-            />
-
-            <Input
-              name="pix"
-              icon={FiKey}
-              type="text"
-              placeholder="chave PIX"
-              onChange={(e) => {
-                props.setState('pix', e.target.value)
+                props.setState('tags', e.target.value)
               }}
             />
 
@@ -150,7 +123,7 @@ const BankForm: React.FC = (props: any) => {
                   required
                 />
                 <LabelRadio>
-                  Li e aceito os <a target="_blank" rel="noopener noreferrer" href="https://www.club.finmarc.com.br/docs/terms.pdf" > Termos</a> de uso e a  <a target="_blank" rel="noopener noreferrer" href="https://www.finmarc.com.br/docs/Politica_de_privacidade.pdf">política de privacidade.</a>
+                  Li e aceito os <a target="_blank" rel="noopener noreferrer" href="http://localhost:3000/docs/terms.pdf" > Termos</a> de uso e a  <a target="_blank" rel="noopener noreferrer" href="http://localhost:3000/docs/terms.pdf">política de privacidade.</a>
                 </LabelRadio>
               </Radio>
             </RadioGroup>
