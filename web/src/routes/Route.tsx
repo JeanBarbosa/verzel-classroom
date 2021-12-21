@@ -1,4 +1,5 @@
 import React from 'react';
+import { Default as DefaultLayout } from '../layouts';
 import {
   Route as ReactDOMRoute,
   RouteProps as ReactDOMRouteProps,
@@ -23,6 +24,15 @@ const Route: React.FC<RouteProps> = ({
     <ReactDOMRoute
       {...rest}
       render={({ location }) => {
+
+        /** logged in user */
+        if (isPrivate && !!user) {
+          return (
+            <DefaultLayout>
+              < Component />
+            </DefaultLayout>
+          )
+        }
 
         return isPrivate === !!user ? (
           <Component />
