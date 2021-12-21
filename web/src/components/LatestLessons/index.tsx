@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { format } from 'date-fns'
 import ReactList from 'react-list';
-import { BsCheckBox } from 'react-icons/bs';
 import { useHistory } from 'react-router-dom';
 import { abridgedControl } from '../../utils/abridgedControl';
 import { FaEllipsisH } from 'react-icons/fa';
 import api from '../../services/api';
-import stars from '../../assets/stars.svg';
+import { Rewards } from '../Rewards';
 
 import {
   Container,
@@ -14,9 +13,7 @@ import {
   Header,
   LessonInfo,
   Info,
-  Status,
-  RewardsCards,
-  RewardsCard
+  Status
 } from './styles';
 
 const LatestLessons: React.FC = () => {
@@ -71,39 +68,7 @@ const LatestLessons: React.FC = () => {
 
   if (lessons.length <= 0) {
     return <Container>
-      <RewardsCards>
-        <RewardsCard>
-          <img src={stars} alt="stars" />
-          <span>
-            Suas aulas são <br />
-            valiosas na nossa base
-          </span>
-        </RewardsCard>
-        <RewardsCard>
-          <ul>
-            <li>
-              <BsCheckBox size={20} />
-              <span>
-                Crie, Assitiu? Ganhou!
-              </span>
-            </li>
-            <li>
-              <BsCheckBox size={20} />
-              <span>
-                Faça uma integraçao completa
-                com suas playlist do youtube
-              </span>
-            </li>
-            <li>
-              <BsCheckBox size={20} />
-              <span>
-                Ofereça vantagens exclusivas
-                para amigos e parentes.
-              </span>
-            </li>
-          </ul>
-        </RewardsCard>
-      </RewardsCards>
+      <Rewards />
     </Container>
   }
 
