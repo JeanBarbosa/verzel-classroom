@@ -124,10 +124,12 @@ const Lessons: React.FC = () => {
                     {item.start_date}
                   </td>
                   <td>
-                    {item.url}
+                    <a rel="noopener noreferrer" target="_blank" href={item.url}>
+                      Assistir
+                    </a>
                   </td>
                   <td>
-                    {item.description}
+                    {item.description.substring(0, 30) + '...'}
                   </td>
                 </tr>
               ))
