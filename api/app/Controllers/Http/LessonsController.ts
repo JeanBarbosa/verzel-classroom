@@ -67,7 +67,11 @@ export default class LessonsController {
 
   public async show({ response, params }: HttpContextContract) {
     try {
-      const lesson = await Lesson.findByOrFail('id', params.id)
+      const lesson = await Lesson
+        .query()
+        .preload('courses')
+        .where('id', params.id)
+        .firstOrFail()
 
       return lesson
 

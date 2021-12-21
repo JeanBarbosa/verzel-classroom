@@ -9,7 +9,8 @@ export default class LessonCourses extends BaseSchema {
 
       table.integer('course_id').unsigned().references('courses.id')
       table.integer('lesson_id').unsigned().references('lessons.id')
-      table.unique(['course_id', 'lesson_id'])
+      // table.unique(['course_id', 'lesson_id'])
+
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
