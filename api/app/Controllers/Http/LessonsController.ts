@@ -9,7 +9,7 @@ export default class LessonsController {
 
       const lessons = await Lesson.query()
         .preload('courses')
-        .orderBy('id', 'desc')
+        .orderBy('name', 'asc')
         .paginate(page)
 
       return lessons
