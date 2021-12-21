@@ -11,8 +11,12 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: stretch;
 
+  @media(min-width: 1024px){
+
   background: url(${signInBackground}) no-repeat center;
   background-size: cover;
+  }
+
 `;
 
 export const Content = styled.div`

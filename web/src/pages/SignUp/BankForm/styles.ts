@@ -232,21 +232,3 @@ export const LabelRadio = styled.span`
 
   font-weight: bold;
 `;
-
-
-export const PlayerWrapper = styled.div`
-    position: relative;
-    z-index: 2;
-
-  .react-player {
-    position: fixed;
-    top: 0;
-
-    @media(min-width: 1024px){
-      width: 50%;
-      height: 50%;
-    }
-  }
-
-
-`;

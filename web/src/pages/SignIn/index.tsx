@@ -81,7 +81,7 @@ const SignIn: React.FC = () => {
           <Form ref={formRef} onSubmit={handleSubmit}>
             <h1>Acesso Exclusivo</h1>
             <p>
-              Cursos exclusivos<br />
+              nos cursos da<br />
               Verzel Classroom
             </p>
 
@@ -106,8 +106,8 @@ const SignIn: React.FC = () => {
           Ainda não tem conta? <br />
           <b> Cadastre-se </b>
         </Link>
-        <Link to="/">
-          Conheça as vantagens do <br /> Verzel Classroom, <b>Clique aqui!</b>
+        <Link to="/signin">
+          Conheça as vantagens da <br /> Verzel Classroom, <b>Clique aqui!</b>
         </Link>
       </Footer>
     </Container>
