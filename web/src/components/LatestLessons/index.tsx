@@ -5,7 +5,6 @@ import { BsCheckBox } from 'react-icons/bs';
 import { useHistory } from 'react-router-dom';
 import { abridgedControl } from '../../utils/abridgedControl';
 import { FaEllipsisH } from 'react-icons/fa';
-import userAvatar from '../../assets/avatars/user1.png';
 import api from '../../services/api';
 import stars from '../../assets/stars.svg';
 
@@ -13,7 +12,7 @@ import {
   Container,
   Card,
   Header,
-  Indicated,
+  LessonInfo,
   Info,
   Status,
   RewardsCards,
@@ -39,8 +38,8 @@ const LatestLessons: React.FC = () => {
   const renderCard = (index: any, key: any) => {
     return (
       <Card key={key} onClick={() => handleClickIndicated(lessons[index].id)}>
-        <Indicated>
-          <img src={userAvatar} alt="avatar" />
+        <LessonInfo>
+          <img src={`https://img.youtube.com/vi/EPXz7700lfY/0.jpg`} alt="avatar" />
           <Info>
             <h6>
               {abridgedControl(lessons[index].name, 8)}
@@ -49,7 +48,7 @@ const LatestLessons: React.FC = () => {
               {format(new Date(lessons[index].created_at), 'dd/MM/yy hh:mm')}
             </span>
           </Info>
-        </Indicated>
+        </LessonInfo>
         <Status>
           <p>
             ver

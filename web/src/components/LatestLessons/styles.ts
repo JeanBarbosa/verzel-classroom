@@ -21,8 +21,8 @@ export const Card = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-  padding: 10px;
+  justify-content: space-between;
+  padding: 20px;
 
   height: 100px;
 
@@ -39,7 +39,7 @@ export const Card = styled.div`
 
   &:hover {
     cursor: pointer;
-    background: #5dc293;
+    background: var(--color-primary);
 
     span{
       color: #fff;
@@ -72,15 +72,14 @@ export const Header = styled.div`
   }
 `;
 
-export const Indicated = styled.div`
+export const LessonInfo = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
 
   img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
   }
 `;
 
