@@ -10,7 +10,7 @@ import ResetPassword from '../pages/ResetPassword';
 
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
-
+import NewCourse from '../pages/NewCourse';
 
 const Routes: React.FC = () => {
   return (
@@ -22,6 +22,7 @@ const Routes: React.FC = () => {
 
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
+      <Route path="/courses/new" component={NewCourse} isPrivate />
 
     </Switch>
   );

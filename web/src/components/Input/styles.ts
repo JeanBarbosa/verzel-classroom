@@ -15,7 +15,7 @@ export const Container = styled.div<ContainerProps>`
   width: 100%;
 
   border: 2px solid #ffffff;
-  color: #FB6D3A;
+  color: var(--color-quaternary);
 
   display: flex;
   align-items: center;

@@ -63,7 +63,7 @@ const ResetPassword: React.FC = () => {
           type: 'success',
           title: 'Senha alterada!',
           description:
-            'Acesse o dashboard e indique a vontade!! 😀',
+            'Acesse o dashboard e crie a vontade!! 😀',
         });
 
         history.push('/signin');
