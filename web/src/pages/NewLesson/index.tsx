@@ -1,10 +1,8 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { FiVideo, FiLink, FiCalendar, FiFileText } from 'react-icons/fi';
-import { BsCheckBox } from 'react-icons/bs';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import stars from '../../assets/stars.svg';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toast';
 import { useHistory } from 'react-router-dom';
@@ -12,18 +10,19 @@ import getValidationErrors from '../../utils/getValidationErrors';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import Select from '../../components/Select';
 
 import {
   Container,
   Content,
   FormSection,
   Title,
-  Aside,
-  Cards,
-  Card
+  Aside
 } from './styles';
+import { Rewards } from '../../components/Rewards';
 
 interface LessonFormData {
+  course_id?: number;
   name: string;
   start_date: string;
   url: string;
@@ -34,6 +33,7 @@ const NewLesson: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
+  const [courses, setCourses] = useState([])
 
   const history = useHistory()
   const styles = { borderColor: '#111', borderWidth: '1px' }
@@ -45,6 +45,7 @@ const NewLesson: React.FC = () => {
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
+          course_id: Yup.string(),
           name: Yup.string().required('Nome obrigatório'),
           start_date: Yup.string().required('Data de início obrigatório'),
           url: Yup.string().required('Link do youtube obrigatório'),
@@ -87,6 +88,20 @@ const NewLesson: React.FC = () => {
     [addToast, history],
   );
 
+  useEffect(() => {
+    api.get('courses').then(res => {
+      const { data } = res
+      const courseParse = data.data.map((item: any) => {
+        return {
+          value: item.id,
+          label: item.name
+        }
+      })
+
+      setCourses(courseParse)
+    })
+  }, [])
+
   return (
     <Container>
       <Content>
@@ -104,6 +119,12 @@ const NewLesson: React.FC = () => {
             }}
             onSubmit={handleSubmit}
           >
+            <Select
+              name="course_id"
+              options={courses}
+              icon={FiVideo}
+              defaultValue={{ value: '', label: '-- selecione o módulo --' }}
+            />
 
             <Input
               containerStyle={styles}
@@ -138,39 +159,7 @@ const NewLesson: React.FC = () => {
       </Content>
 
       <Aside>
-        <Cards>
-          <Card>
-            <img src={stars} alt="stars" />
-            <span>
-              Suas aulas são <br />
-              valiosas na nossa base
-            </span>
-          </Card>
-          <Card>
-            <ul>
-              <li>
-                <BsCheckBox size={20} />
-                <span>
-                  Crie, Assita? Ganhe!
-                </span>
-              </li>
-              <li>
-                <BsCheckBox size={20} />
-                <span>
-                  Faça uma integraçao completa
-                  com sua playlist do youtube
-                </span>
-              </li>
-              <li>
-                <BsCheckBox size={20} />
-                <span>
-                  Ofereça vantagens exclusivas
-                  para amigos e parentes.
-                </span>
-              </li>
-            </ul>
-          </Card>
-        </Cards>
+        <Rewards />
       </Aside>
     </Container>
   );

@@ -24,7 +24,7 @@ const Header: React.FC = () => {
   }
 
   const handleClickLessons = () => {
-    history.push('/lessons');
+    history.push('/lessons/new');
   }
 
   return (

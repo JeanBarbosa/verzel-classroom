@@ -1,10 +1,8 @@
 import React, { useCallback, useRef } from 'react';
 import { FiList, FiFileText } from 'react-icons/fi';
-import { BsCheckBox } from 'react-icons/bs';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import stars from '../../assets/stars.svg';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toast';
 import { useHistory } from 'react-router-dom';
@@ -18,10 +16,9 @@ import {
   Content,
   FormSection,
   Title,
-  Aside,
-  Cards,
-  Card
+  Aside
 } from './styles';
+import { Rewards } from '../../components/Rewards';
 
 interface CourseFormData {
   name: string;
@@ -118,39 +115,7 @@ const NewCourse: React.FC = () => {
       </Content>
 
       <Aside>
-        <Cards>
-          <Card>
-            <img src={stars} alt="stars" />
-            <span>
-              Suas aulas são <br />
-              valiosas na nossa base
-            </span>
-          </Card>
-          <Card>
-            <ul>
-              <li>
-                <BsCheckBox size={20} />
-                <span>
-                  Crie, Assitiu? Ganhou!
-                </span>
-              </li>
-              <li>
-                <BsCheckBox size={20} />
-                <span>
-                  Faça uma integraçao completa
-                  com sua playlist do youtube
-                </span>
-              </li>
-              <li>
-                <BsCheckBox size={20} />
-                <span>
-                  Ofereça vantagens exclusivas
-                  para amigos e parentes.
-                </span>
-              </li>
-            </ul>
-          </Card>
-        </Cards>
+        <Rewards />
       </Aside>
     </Container>
   );
