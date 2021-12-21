@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { FiChevronLeft, FiCreditCard } from 'react-icons/fi';
+import { FiChevronLeft, FiTag } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -24,7 +24,6 @@ import {
   Radio,
   LabelRadio,
 } from './styles';
-import { useState } from 'react';
 
 interface SignUpFormData {
   tags: string;
@@ -56,6 +55,14 @@ const BankForm: React.FC = (props: any) => {
         });
 
         await api.post('/users', props.state)
+
+        addToast({
+          type: 'success',
+          title: 'Cadastro criado',
+          description:
+            'Acesse o dashboard e crie a vontade!! 😀',
+        });
+
 
         history.push('/signin');
 
@@ -93,8 +100,8 @@ const BankForm: React.FC = (props: any) => {
           <Benefit>
             {/* eslint-disable jsx-a11y/anchor-is-valid */}
             <a onClick={() => { }}>
-              Saiba o que é pix e como <br />
-              cadastrar sua chave, <b>Clique aqui!</b>
+              Conheça as vantagens da<br />
+              Verzel Classroom, <b>Clique aqui!</b>
             </a>
           </Benefit>
         </Section>
@@ -107,8 +114,8 @@ const BankForm: React.FC = (props: any) => {
 
             <Input
               name="tags"
-              icon={FiCreditCard}
-              placeholder="Tags"
+              icon={FiTag}
+              placeholder="ex: react, nodejs"
               required
               onChange={(e) => {
                 props.setState('tags', e.target.value)
@@ -128,7 +135,7 @@ const BankForm: React.FC = (props: any) => {
               </Radio>
             </RadioGroup>
 
-            <Button type="submit">Finalizar</Button>
+            <Button type="submit">Criar Conta</Button>
           </Form>
         </AnimationContainer>
       </Content>

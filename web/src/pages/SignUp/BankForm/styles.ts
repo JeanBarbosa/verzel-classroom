@@ -57,16 +57,11 @@ export const AnimationContainer = styled.div`
     }
 
     button {
-      color: #f4ede8;
       display: block;
       margin-top: 24px;
       text-decoration: none;
       transition: color 0.2s;
-      background-color: #111;
 
-      &:hover {
-        background-color: ${shade(0.5, '#f1f5f9')};
-      }
     }
 
     @media(min-width: 1024px){
@@ -80,7 +75,7 @@ export const AnimationContainer = styled.div`
   }
 
   > a {
-    color: #071860;
+    color: var(--color-secondary);
     display: block;
     margin-top: 24px;
     text-decoration: none;
@@ -94,7 +89,7 @@ export const AnimationContainer = styled.div`
     }
 
     &:hover {
-      color: ${shade(0.2, '#071860')};
+      color: ${shade(0.2, '#FB6D3A')};
     }
   }
 
@@ -221,7 +216,7 @@ export const Radio = styled.div`
 
   /* appearance for checked radiobutton */
   > input[type="radio"]:checked {
-    background-color: #071860;
+    background-color: var(--color-secondary);
   }
 
 `;
@@ -231,4 +226,14 @@ export const LabelRadio = styled.span`
   margin-left: 10px;
 
   font-weight: bold;
+
+  > a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: ${shade(0.2, '#FB6D3A')};
+    }
+  }
 `;

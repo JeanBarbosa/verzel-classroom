@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useEffect, useState } from 'react';
-import { FiChevronLeft, FiUser, FiMail, FiLock, FiPhone } from 'react-icons/fi';
+import { FiChevronLeft, FiUser, FiMail, FiLock, FiPenTool } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -135,7 +135,7 @@ const UserForm: React.FC = (props: any) => {
 
             <Input
               name="job"
-              icon={FiPhone}
+              icon={FiPenTool}
               type="text"
               placeholder="Profissão"
               onChange={(e) => {
