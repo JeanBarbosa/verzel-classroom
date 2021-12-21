@@ -3,12 +3,13 @@ import Course from 'App/Models/Course'
 import Lesson from 'App/Models/Lesson'
 
 export default class LessonsController {
-  public async index({ request, response }: HttpContextContract) {
+  public async index({ request, response, auth }: HttpContextContract) {
     try {
       const { page } = request.qs()
 
       const lessons = await Lesson.query()
         .preload('courses')
+        .where('user_id', Number(auth.user?.id))
         .orderBy('name', 'asc')
         .paginate(page)
 

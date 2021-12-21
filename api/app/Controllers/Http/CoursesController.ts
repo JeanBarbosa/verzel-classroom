@@ -2,12 +2,13 @@ import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Course from 'App/Models/Course'
 
 export default class CoursesController {
-  public async index({ request, response }: HttpContextContract) {
+  public async index({ request, response, auth }: HttpContextContract) {
     try {
       const { page } = request.qs()
 
       const courses = await Course.query()
         .preload('lessons')
+        .where('user_id', Number(auth.user?.id))
         .orderBy('name', 'asc')
         .paginate(page)
 

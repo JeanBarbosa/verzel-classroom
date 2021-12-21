@@ -14,7 +14,7 @@ const LatestCourses: React.FC = () => {
   const [courses, setCourses] = useState<any>();
 
   useEffect(() => {
-    api.get('/courses').then(res => {
+    api.get('/modules').then(res => {
       const { data } = res;
       setCourses(data);
     })

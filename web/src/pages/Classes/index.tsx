@@ -17,7 +17,7 @@ const Classes: React.FC = () => {
   useEffect(() => {
 
     if (courseId) {
-      api.get(`courses/${courseId}`).then(res => {
+      api.get(`modules/${courseId}`).then(res => {
         const { data } = res
         console.log(data)
         setCourse(data)
