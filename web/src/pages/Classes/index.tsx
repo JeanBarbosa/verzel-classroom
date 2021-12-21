@@ -50,7 +50,7 @@ const Classes: React.FC = () => {
             {course &&
               course?.lessons.map((item: any, index: number) => (
                 <Lesson key={index}>
-                  <iframe width="340" height="315" title={item.index}
+                  <iframe width="320" height="300" title={item.index}
                     src={`https://www.youtube.com/embed/${youtubeGetID(item.url)}?controls=0`}>
                   </iframe>
                   <h3>{item.name}</h3>
