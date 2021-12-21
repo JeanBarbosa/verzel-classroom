@@ -277,3 +277,14 @@ export const Pagination = styled.div`
       }
     }
 `;
+
+export const Actions = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  svg {
+    cursor: pointer;
+  }
+`;

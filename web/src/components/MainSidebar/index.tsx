@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiHome, FiUser, FiMessageSquare, FiList, FiVideo } from 'react-icons/fi';
+import { FiHome, FiUser, FiList, FiVideo } from 'react-icons/fi';
 import { scaleDown as Menu } from 'react-burger-menu';
 
 import { Container } from './styles';
@@ -37,10 +37,6 @@ const MainSidebar: React.FC = () => {
         <Link id="profile" onClick={closeMenu} className="menu-item" to="/profile">
           <FiUser />
           Perfil
-        </Link>
-        <Link onClick={closeMenu} className="menu-item--small" to="/contact">
-          <FiMessageSquare />
-          Dúvidas
         </Link>
       </Menu>
     </Container>

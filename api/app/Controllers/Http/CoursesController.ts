@@ -8,7 +8,7 @@ export default class CoursesController {
 
       const courses = await Course.query()
         .preload('lessons')
-        .orderBy('id', 'desc')
+        .orderBy('name', 'asc')
         .paginate(page)
 
       return courses
@@ -48,7 +48,11 @@ export default class CoursesController {
 
   public async show({ response, params }: HttpContextContract) {
     try {
-      const course = await Course.findByOrFail('id', params.id)
+      const course = await Course
+        .query()
+        .preload('lessons')
+        .where('id', params.id)
+        .firstOrFail()
 
       return course
 

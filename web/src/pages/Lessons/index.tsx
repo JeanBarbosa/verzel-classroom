@@ -1,5 +1,5 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch, FiEye, FiTrash } from 'react-icons/fi';
 import { format } from 'date-fns'
 import { FcNext, FcPrevious } from 'react-icons/fc';
 import { FormHandles } from '@unform/core';
@@ -16,8 +16,10 @@ import {
   Container,
   Content,
   Search,
-  Pagination
+  Pagination,
+  Actions
 } from './styles';
+import { useHistory } from 'react-router-dom';
 
 interface LessonsData {
   meta: any;
@@ -32,6 +34,7 @@ const Lessons: React.FC = () => {
 
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
+  const history = useHistory();
 
   const [data, setData] = useState<LessonsData>()
   const [page, setPage] = useState<number>(1)
@@ -86,6 +89,24 @@ const Lessons: React.FC = () => {
     setPage(cpage)
   }
 
+  const handleDeleteLesson = (id: number) => {
+    api.delete(`/lessons/${id}`).then(res => {
+      //TODO remover do state o lessons
+      api.get('/lessons').then(res => {
+        setData(res.data)
+      })
+    })
+  }
+
+  const handleEditLesson = (lesson: any) => {
+    history.push({
+      pathname: '/lessons/new',
+      search: `?id=${lesson.id}`,
+      state: lesson
+    });
+
+  }
+
   return (
     <Container>
       <Content>
@@ -112,6 +133,7 @@ const Lessons: React.FC = () => {
               <th>Data de início</th>
               <th>Link</th>
               <th>Descrição</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -132,6 +154,12 @@ const Lessons: React.FC = () => {
                   </td>
                   <td>
                     {item.description.substring(0, 30) + '...'}
+                  </td>
+                  <td>
+                    <Actions>
+                      <FiEye strokeWidth={1} size={20} onClick={() => handleEditLesson(item)} />
+                      <FiTrash strokeWidth={1} size={20} onClick={() => handleDeleteLesson(item.id)} />
+                    </Actions>
                   </td>
                 </tr>
               ))

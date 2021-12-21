@@ -15,6 +15,7 @@ import {
   Info,
   Status
 } from './styles';
+import { youtubeGetID } from '../../utils/youtubeGetId';
 
 const LatestLessons: React.FC = () => {
 
@@ -29,20 +30,20 @@ const LatestLessons: React.FC = () => {
   }, [])
 
   const handleClickIndicated = (id: number) => {
-    history.push(`reports?id=${id}`);
+    // history.push(`/lesson?id=${id}`);
   }
 
   const renderCard = (index: any, key: any) => {
     return (
       <Card key={key} onClick={() => handleClickIndicated(lessons[index].id)}>
         <LessonInfo>
-          <img src={`https://img.youtube.com/vi/EPXz7700lfY/0.jpg`} alt="avatar" />
+          <img src={`https://img.youtube.com/vi/${youtubeGetID(lessons[index].url)}/0.jpg`} alt="avatar" />
           <Info>
             <h6>
               {abridgedControl(lessons[index].name, 8)}
             </h6>
             <span>
-              {format(new Date(lessons[index].created_at), 'dd/MM/yy hh:mm')}
+              {format(new Date(lessons[index].start_date), 'dd/MM/yy')}
             </span>
           </Info>
         </LessonInfo>
