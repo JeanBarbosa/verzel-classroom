@@ -12,6 +12,7 @@ import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import NewCourse from '../pages/NewCourse';
 import Courses from '../pages/Courses';
+import Lessons from '../pages/Lessons';
 
 const Routes: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const Routes: React.FC = () => {
       <Route path="/profile" component={Profile} isPrivate />
       <Route path="/courses/new" component={NewCourse} isPrivate />
       <Route path="/courses" component={Courses} isPrivate />
+      <Route path="/lessons" component={Lessons} isPrivate />
 
     </Switch>
   );

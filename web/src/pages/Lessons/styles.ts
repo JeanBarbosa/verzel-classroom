@@ -52,7 +52,7 @@ h2{
 
 .fl-table thead th {
     color: #ffffff;
-    background: var(--color-primary);
+    background: var(--color-secondary);
     font-size: 14px;
 }
 
@@ -210,7 +210,7 @@ export const Search = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background: var(--color-primary);
+  background: var(--color-secondary);
   padding: 10px 10px;
   border-radius: 8px 8px 0px 0px;
 
@@ -236,8 +236,13 @@ export const Search = styled.div`
       transition: color 0.2s;
       margin-top: 0px;
       width: 140px;
+      background: var(--color-primary);
 
       font-size: 12px;
+
+       &:hover {
+        background: ${shade(0.5, '#0965cb')};
+      }
     }
   }
 
@@ -265,10 +270,10 @@ export const Pagination = styled.div`
       border: none;
       width: 20px;
       height: 20px;
-      background: var(--color-secondary);
+      background: var(--color-primary);
 
-        &:hover {
-          background: ${shade(0.5, '#FB6D3A')};
-        }
+      &:hover {
+        background: ${shade(0.5, '#0965cb')};
+      }
     }
 `;
