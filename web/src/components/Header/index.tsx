@@ -23,7 +23,7 @@ const Header: React.FC = () => {
     history.push('/courses/new');
   }
 
-  const handleClickInvites = () => {
+  const handleClickLessons = () => {
     history.push('/lessons');
   }
 
@@ -35,7 +35,7 @@ const Header: React.FC = () => {
           <FiList strokeWidth="1" color="#111" size={40} />
         </Btn>
 
-        <Btn onClick={handleClickInvites}>
+        <Btn onClick={handleClickLessons}>
           <FiVideo strokeWidth="1" color="#111" size={40} />
         </Btn>
 

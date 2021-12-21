@@ -12,6 +12,8 @@ import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import NewCourse from '../pages/NewCourse';
 import Courses from '../pages/Courses';
+import Lessons from '../pages/Lessons';
+import NewLesson from '../pages/NewLesson';
 
 const Routes: React.FC = () => {
   return (
@@ -23,8 +25,10 @@ const Routes: React.FC = () => {
 
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/profile" component={Profile} isPrivate />
-      <Route path="/courses/new" component={NewCourse} isPrivate />
-      <Route path="/courses" component={Courses} isPrivate />
+      <Route path="/courses/new" exact component={NewCourse} isPrivate />
+      <Route path="/courses" exact component={Courses} isPrivate />
+      <Route path="/lessons" exact component={Lessons} isPrivate />
+      <Route path="/lessons/new" exact component={NewLesson} isPrivate />
 
     </Switch>
   );

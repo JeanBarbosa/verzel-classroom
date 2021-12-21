@@ -1,143 +1,125 @@
-import React, { useCallback, useRef, useState, useEffect } from 'react';
-import { FiSearch } from 'react-icons/fi';
-import { FcNext, FcPrevious } from 'react-icons/fc';
-import { FormHandles } from '@unform/core';
-import { Form } from '@unform/web';
-import * as Yup from 'yup';
+import React, { useState, useEffect } from 'react';
+import { FiCopy, FiEye, FiTrash } from 'react-icons/fi';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import { useToast } from '../../hooks/toast';
-
-import getValidationErrors from '../../utils/getValidationErrors';
-
-import Input from '../../components/Input';
+import medias from '../../assets/medias.jpg';
 import Button from '../../components/Button';
+
 import {
   Container,
   Content,
-  Search,
-  Pagination
+  Aside,
+  Section,
+  Cards,
+  Card,
+  SocialMedia,
+  Header,
+  Title,
+  Subtitle,
+  InviteLink,
+  Body,
+  Footer,
+  Empty
 } from './styles';
 
-interface CoursesData {
+interface CourseData {
   meta: any;
   data: any;
 }
 
-interface CoursesFormData {
-  keyword: string;
-}
-
 const Courses: React.FC = () => {
 
-  const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
+  const history = useHistory();
 
-  const [data, setData] = useState<CoursesData>()
-  const [page, setPage] = useState<number>(1)
+  const [data, setData] = useState<CourseData>()
 
   useEffect(() => {
-    const url = `/courses`;
-
-    api.get(url).then(res => {
+    api.get('/courses').then(res => {
       setData(res.data)
     })
   }, [])
 
-  const handleSubmit = useCallback(
-    async (data: CoursesFormData, { reset }) => {
+  const handleClickCopy = () => {
+    addToast({
+      type: 'info',
+      title: 'Copiado!!',
+      description: 'Link do módulo copiado para área de transferência',
+    });
+  }
 
-      try {
-        formRef.current?.setErrors({});
+  const handleCreateCourse = () => {
+    history.push('/courses/new');
+  }
 
-        const schema = Yup.object().shape({
-          keyword: Yup.string(),
-        });
-
-        await schema.validate(data, {
-          abortEarly: false,
-        });
-
-        const { keyword } = data
-        const res = await api.get(`/courses?keyword=${keyword}&page=${page}`);
-
+  const handleDeleteCourse = (id: number) => {
+    api.delete(`/courses/${id}`).then(res => {
+      //TODO remover do state o módulo
+      api.get('/courses').then(res => {
         setData(res.data)
+      })
+    })
+  }
 
-      } catch (err) {
-        if (err instanceof Yup.ValidationError) {
-          const errors = getValidationErrors(err);
-
-          formRef.current?.setErrors(errors);
-
-          return;
-        }
-
-        addToast({
-          type: 'error',
-          title: 'Erro ao pesquisar',
-          description: 'Ocorreu um erro ao pesquisar os módulos, tente novamente',
-        });
-      }
-    },
-    [addToast, page],
-  );
-
-  const handleClickPaginate = (cpage: number) => {
-    setPage(cpage)
+  const handlePreview = (url: string) => {
+    window.open(url, '_blank');
   }
 
   return (
     <Container>
-      <Content>
-        <Search>
-          <Form
-            ref={formRef}
-            initialData={{
-              keyword: "",
-            }}
-            onSubmit={handleSubmit}
-          >
-            <Input
-              name="keyword"
-              icon={FiSearch}
-              placeholder="Pesquise seus módulos"
-            />
-            <Button type="submit">Pesquisar</Button>
-          </Form>
-        </Search>
-        <table className="fl-table">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Descrição</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              data?.data.map((item: any) => (
-                <tr key={item.id}>
-                  {/* <Link to={`courses/edit?id=${item.id}`}> */}
-                  <td>{item.name}</td>
-                  {/* </Link> */}
-                  <td>
-                    {item.short_description}
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-        <Pagination>
-          <span>
-            Página {data?.meta.first_page} de {data?.meta.last_page}
-          </span>
+      <Aside>
+        <Section>
+          <Button disabled={data?.data.length < 3 ? false : true} onClick={handleCreateCourse} > Criar Módulo </Button>
+        </Section>
 
-          <button onClick={() => { handleClickPaginate(page - 1) }}>
-            <FcPrevious />
-          </button>
-          <button onClick={() => { handleClickPaginate(page + 1) }}>
-            <FcNext />
-          </button>
-        </Pagination>
+        <Cards>
+          <SocialMedia>
+            <img src={medias} alt="social medias" width="280px" />
+            <span>
+              Crie seus módulos <br />
+              e compartilhe nas redes sociais
+            </span>
+          </SocialMedia>
+        </Cards>
+      </Aside>
+      <Content>
+        <h3>
+          Meus Módulos
+        </h3>
+        {
+          data?.data.length <= 0 ? (<Empty><p> Nenhum módulo foi criado!</p></Empty>) :
+            (
+              <Cards>
+                {
+                  data?.data.map((item: any, index: number) => (
+                    <Card key={index}>
+                      <Header />
+                      <Body>
+                        <Title>
+                          {item.name}
+                        </Title>
+                        <Subtitle>
+                          {item.short_description}
+                        </Subtitle>
+                        <InviteLink>
+                          {`http://localhost:3000/modules?q=${item.id}`}
+                        </InviteLink>
+                      </Body>
+                      <Footer>
+                        <CopyToClipboard text={`http://localhost:3000/modules?q=${item.id}`}
+                          onCopy={handleClickCopy}>
+                          <FiCopy strokeWidth={1} size={20} />
+                        </CopyToClipboard>
+                        <FiEye strokeWidth={1} size={20} onClick={() => handlePreview(`http://localhost:3000/modules?q=${item.id}`)} />
+                        <FiTrash strokeWidth={1} size={20} onClick={() => handleDeleteCourse(item.id)} />
+                      </Footer>
+                    </Card>
+                  ))
+                }
+              </Cards>
+            )}
       </Content>
     </Container>
   );

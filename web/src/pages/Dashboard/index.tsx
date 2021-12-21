@@ -35,7 +35,7 @@ const Dashboard: React.FC = () => {
             </span>
           </Card>
 
-          <Card onClick={() => handleClickCard('/lessons')}>
+          <Card onClick={() => handleClickCard('/lessons/new')}>
             <FiVideo strokeWidth="1" size={50} />
             <span>
               Criar <br />
