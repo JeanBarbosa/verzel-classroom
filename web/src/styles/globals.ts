@@ -40,7 +40,7 @@ export default createGlobalStyle`
 
   ::-webkit-scrollbar-thumb:vertical {
     height: 30px;
-    background-color: #0965cb;
+    background-color: #FB6D3A;
   }
 
   :root {
