@@ -1,13 +1,19 @@
 import styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
-import signInBackground from '../../assets/bg/fp.png';
 
 export const Container = styled.div`
   height: 100vh;
 
   display: flex;
-  align-items: stretch;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px;
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: stretch;
+  }
 `;
 
 export const Content = styled.div`
@@ -15,9 +21,11 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: var(--color-secondary);
+  border-radius: 50px;
+  color: #111;
 
   width: 100%;
-  max-width: 700px;
 `;
 
 const appearFromLeft = keyframes`
@@ -35,38 +43,27 @@ const appearFromLeft = keyframes`
 export const AnimationContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 
   animation: ${appearFromLeft} 1s;
 
-  form {
-    margin: 40px 0;
-    width: 340px;
-    text-align: center;
+  > h2 {
+    font-size: 23px;
+    margin-bottom: 40px;
 
-    h1 {
-      margin-bottom: 24px;
+    @media (min-width: 1024px) {
+      font-size: 38px;
+      line-height: 40px;
     }
   }
 
-    a {
-      color: #f4ede8;
-      display: block;
-      margin-top: 24px;
-      text-decoration: none;
-      transition: color 0.2s;
-
-      &:hover {
-        color: ${shade(0.2, '#f4ede8')};
-      }
-    }
-  }
-
-  > a {
-    color: #ff9000;
+  > button {
+    border: none;
+    background-color: transparent;
+    color: #ffffff;
     display: block;
-    margin-top: 24px;
+    margin: 20px 0px;
     text-decoration: none;
     transition: color 0.2s;
 
@@ -74,16 +71,16 @@ export const AnimationContainer = styled.div`
     align-items: center;
 
     svg {
+      height: 40px;
+      width: 40px;
       margin-right: 16px;
+      border-radius: 8px;
+      border: 2px solid;
+      padding: 5px;
     }
 
     &:hover {
-      color: ${shade(0.2, '#ff9000')};
+      color: ${shade(0.2, '#111')};
     }
-`;
-
-export const Background = styled.div`
-  flex: 1;
-  background: url(${signInBackground}) no-repeat center;
-  background-size: cover;
+  }
 `;

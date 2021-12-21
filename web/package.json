@@ -24,6 +24,7 @@
     "react-icons": "^3.11.0",
     "react-list": "^0.8.16",
     "react-rating-stars-component": "^2.2.0",
+    "react-responsive-carousel": "^3.2.22",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-select": "^4.3.1",

@@ -7,6 +7,7 @@ import api, { useQuery } from '../../services/api';
 import { useToast } from '../../hooks/toast';
 import { useHistory, useLocation } from 'react-router-dom';
 import getValidationErrors from '../../utils/getValidationErrors';
+import { youtubeGetID } from '../../utils/youtubeGetId';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -52,7 +53,16 @@ const NewLesson: React.FC = () => {
           course_id: Yup.string(),
           name: Yup.string().required('Nome obrigatório'),
           start_date: Yup.string().required('Data de início obrigatório'),
-          url: Yup.string().required('Link do youtube obrigatório'),
+          url: Yup.string().required('Link do youtube obrigatório')
+            .test('URL_YOUTUBE', 'Link do youtube obrigatório', (value) => {
+              if (value) {
+                console.log(youtubeGetID(value))
+                return youtubeGetID(value) ? true : false
+              }
+
+              return false
+            }
+            ),
           description: Yup.string(),
         });
 
