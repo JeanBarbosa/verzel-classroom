@@ -8,7 +8,7 @@ export default class UsersSchema extends BaseSchema {
       table.increments('id').primary()
       table.string('avatar', 255)
       table.string('username', 255).notNullable()
-      table.string('email', 255).notNullable()
+      table.string('email', 255).notNullable().unique()
       table.string('password', 180).notNullable()
       table.string('job', 80)
       table.string('tags', 300)

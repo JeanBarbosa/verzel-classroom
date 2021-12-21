@@ -23,7 +23,7 @@ const LatestLessons: React.FC = () => {
   const [lessons, setlessons] = useState<Array<any>>([]);
 
   useEffect(() => {
-    api.get('/lessons').then(res => {
+    api.get('/classes').then(res => {
       const { data } = res;
       setlessons(data.data);
     })
