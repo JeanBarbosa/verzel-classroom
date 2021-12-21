@@ -14,6 +14,8 @@ import {
   Cards,
   Card
 } from './styles';
+import LatestLessons from '../../components/LatestLessons';
+import LessonsChart from '../../components/LessonsChart';
 
 const Dashboard: React.FC = () => {
 
@@ -51,12 +53,12 @@ const Dashboard: React.FC = () => {
           </Card>
         </Cards>
 
-        {/* <CoursesChart /> */}
+        <LessonsChart />
 
       </Graphics>
 
       <Lessons>
-        {/* <LatestLessons /> */}
+        <LatestLessons />
       </Lessons>
     </Container>
   );

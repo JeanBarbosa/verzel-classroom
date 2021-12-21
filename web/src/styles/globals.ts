@@ -9,7 +9,7 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #40327E;
+    background: #0965cb;
     color: #fff;
     -webkit-font-smoothing: antialiased;
   }
@@ -40,7 +40,7 @@ export default createGlobalStyle`
 
   ::-webkit-scrollbar-thumb:vertical {
     height: 30px;
-    background-color: #eee;
+    background-color: #0965cb;
   }
 
   :root {
