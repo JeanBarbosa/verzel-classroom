@@ -131,7 +131,7 @@ const NewCourse: React.FC = () => {
               <li>
                 <BsCheckBox size={20} />
                 <span>
-                  Crie, Assita? Ganhe!
+                  Crie, Assitiu? Ganhou!
                 </span>
               </li>
               <li>

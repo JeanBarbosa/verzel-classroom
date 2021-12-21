@@ -76,7 +76,7 @@ export const Btn = styled.div`
   &:hover {
     background: #EFF1F1;
      cursor: pointer;
-     border-bottom: 2px solid #416e54;
+     border-bottom: 2px solid #0965cb;
   }
 
 `;

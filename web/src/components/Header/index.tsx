@@ -19,8 +19,8 @@ const Header: React.FC = () => {
   const history = useHistory();
   const { user } = useAuth();
 
-  const handleAddNew = () => {
-    history.push('/courses/new');
+  const handleListCourses = () => {
+    history.push('/courses');
   }
 
   const handleClickLessons = () => {
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
     <Container>
       <HeaderContent>
 
-        <Btn onClick={handleAddNew}>
+        <Btn onClick={handleListCourses}>
           <FiList strokeWidth="1" color="#111" size={40} />
         </Btn>
 

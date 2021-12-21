@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { FiSearch } from 'react-icons/fi';
+import { format } from 'date-fns'
 import { FcNext, FcPrevious } from 'react-icons/fc';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -121,7 +122,8 @@ const Lessons: React.FC = () => {
                   <td>{item.name}</td>
                   {/* </Link> */}
                   <td>
-                    {item.start_date}
+                    {item.start_date ? format(new Date(item.start_date), 'dd/MM/yy hh:mm') : ""}
+
                   </td>
                   <td>
                     <a rel="noopener noreferrer" target="_blank" href={item.url}>
