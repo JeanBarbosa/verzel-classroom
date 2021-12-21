@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useCallback, useRef } from 'react';
-import { FiUser, FiMail, FiLock, FiCamera, FiTag } from 'react-icons/fi';
+import { FiUser, FiMail, FiLock, FiCamera, FiTag, FiPenTool } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
@@ -20,6 +20,7 @@ import { Container, Content, FormSection, FormGroup, AvatarInput } from './style
 interface ProfileFormData {
   username: string;
   email: string;
+  job: string;
   tags: string;
   old_password?: string;
   password: string;
@@ -40,6 +41,7 @@ const Profile: React.FC = () => {
 
         const schema = Yup.object().shape({
           username: Yup.string().required('Nome obrigatório'),
+          job: Yup.string(),
           tags: Yup.string(),
           email: Yup.string()
             .required('E-mail obrigatório')
@@ -175,6 +177,12 @@ const Profile: React.FC = () => {
                 name="email"
                 icon={FiMail}
                 placeholder="E-mail" />
+
+              <Input
+                containerStyle={styles}
+                name="job"
+                icon={FiPenTool}
+                placeholder="Profissão" />
 
               <Input
                 containerStyle={styles}
