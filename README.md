@@ -57,6 +57,7 @@ Banco de dados
 Sqlite3
 
 Obs: Foi usado sqlite e comitado o banco para facilitar os testes mas poderia se usado qualquer instacia...
+usuario para teste: email: jean@gmail.com  senha: 123456
 
 ## :memo: License
 This project is under the MIT license. See the [LICENSE](https://github.com/jeanbarbosa/verzel-classroom/blob/master/LICENSE) for more information.
