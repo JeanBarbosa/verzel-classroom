@@ -9,6 +9,8 @@ export default class UsersController {
         'username',
         'email',
         'password',
+        'job',
+        'tags'
       ])
 
       const user = await User.create(data)
@@ -36,6 +38,8 @@ export default class UsersController {
         'username',
         'email',
         'password',
+        'job',
+        'tags'
       ])
 
       const user = await User.findOrFail(auth.use('api').user!.id)
