@@ -33,7 +33,6 @@
       "@adonisjs/auth",
       "@adonisjs/mail",
       "@adonisjs/view",
-      "@adonisjs/drive-s3"
     ]
   }
 }
