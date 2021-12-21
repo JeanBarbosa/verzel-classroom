@@ -45,3 +45,6 @@ Route.post('lessons', 'LessonsController.store').middleware('auth')
 Route.put('lessons/:id', 'LessonsController.update').middleware('auth')
 Route.get('lessons/:id', 'LessonsController.show')
 Route.delete('lessons/:id', 'LessonsController.destroy').middleware('auth')
+
+//Graphics
+Route.get('graphics', 'GraphicsController.index').middleware('auth')
