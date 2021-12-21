@@ -27,7 +27,7 @@ const Dashboard: React.FC = () => {
     <Container>
       <Graphics>
         <Cards>
-          <Card onClick={() => handleClickCard('/new')}>
+          <Card onClick={() => handleClickCard('/courses/new')}>
             <FiList strokeWidth="1" size={50} />
             <span>
               Criar <br />

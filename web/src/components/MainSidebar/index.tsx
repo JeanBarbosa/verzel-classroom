@@ -26,7 +26,7 @@ const MainSidebar: React.FC = () => {
           <FiHome />
           Dashboard
         </Link>
-        <Link id="lessons" onClick={closeMenu} className="menu-item" to="/lessons">
+        <Link id="courses" onClick={closeMenu} className="menu-item" to="/courses">
           <FiList />
           Módulos
         </Link>

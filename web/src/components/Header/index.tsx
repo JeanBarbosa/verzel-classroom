@@ -20,7 +20,7 @@ const Header: React.FC = () => {
   const { user } = useAuth();
 
   const handleAddNew = () => {
-    history.push('/new');
+    history.push('/courses/new');
   }
 
   const handleClickInvites = () => {
