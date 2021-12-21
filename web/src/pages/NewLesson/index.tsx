@@ -3,9 +3,9 @@ import { FiVideo, FiLink, FiCalendar, FiFileText } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import api from '../../services/api';
+import api, { useQuery } from '../../services/api';
 import { useToast } from '../../hooks/toast';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import Input from '../../components/Input';
@@ -31,9 +31,13 @@ interface LessonFormData {
 
 const NewLesson: React.FC = () => {
 
+  const id = Number(useQuery().get('id'));
   const formRef = useRef<FormHandles>(null);
   const { addToast } = useToast();
   const [courses, setCourses] = useState([])
+
+  const location = useLocation();
+  const lesson = (location.state as LessonFormData);
 
   const history = useHistory()
   const styles = { borderColor: '#111', borderWidth: '1px' }
@@ -108,15 +112,14 @@ const NewLesson: React.FC = () => {
         <FormSection>
           <Title>
             <FiVideo strokeWidth="1" size={50} />
-            <h1>Nova Aula</h1>
+            {id ? <h1>Editar Aula</h1>
+              : <h1>Nova Aula</h1>
+            }
           </Title>
 
           <Form
             ref={formRef}
-            initialData={{
-              name: "",
-              document: "",
-            }}
+            initialData={id ? lesson : {}}
             onSubmit={handleSubmit}
           >
             <Select
