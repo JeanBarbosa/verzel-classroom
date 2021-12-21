@@ -36,12 +36,12 @@ $ git clone https://github.com/JeanBarbosa/verzel-classroom.git && cd verzel-cla
 
 # Install dependencies API
 $ cd api && yarn install
-$ cp env.example .env
+$ cp .env.example .env
 $ node ace serve --watch
 
 # Install dependencies WEB
 $ cd web && yarn install
-$ cp env.example .env
+$ cp .env.example .env
 $ yarn start
 
 ```
